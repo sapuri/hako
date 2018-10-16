@@ -1,5 +1,3 @@
-import hashlib
-
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
 
@@ -21,7 +19,9 @@ class IndexView(View):
             if 'room_name' in request.POST and request.POST['room_name']:
                 room_name = request.POST.get('room_name')
                 room_id = Room.generate_room_id()
-                room = Room.objects.create(room_id=room_id, name=room_name, ip_addr=Room.get_client_ip(request))
+                ip_addr = Room.get_client_ip(request)
+                user_id = Room.generate_user_id(room_id, ip_addr)
+                room = Room.objects.create(room_id=room_id, name=room_name, user_id=user_id, ip_addr=ip_addr)
                 room.save()
 
                 return redirect('web:room', room_id=room_id)
@@ -43,7 +43,7 @@ class RoomView(View):
         initial_post = {
             'index': 0,
             'name': '匣',
-            'body': '部屋が作成されました。',
+            'body': f'ID:{room.user_id} によって部屋が作成されました。',
             'created_at': room.created_at
         }
 
@@ -64,7 +64,7 @@ class RoomView(View):
         if 'action' in request.POST and request.POST['action'] == 'save':
             name = '名無しさん'
             body = ''
-            ip_addr = Post.get_client_ip(request)
+            ip_addr = Room.get_client_ip(request)
 
             if 'name' in request.POST and request.POST['name']:
                 name = request.POST.get('name')
@@ -79,7 +79,7 @@ class RoomView(View):
                     room=room,
                     name=name,
                     body=body,
-                    user_id=hashlib.sha1(f'{room.room_id}{ip_addr}'.encode()).hexdigest(),
+                    user_id=Room.generate_user_id(room_id, ip_addr),
                     ip_addr=ip_addr
                 )
                 new_post.save()
