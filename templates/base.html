@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#181818">
+    <meta property="og:url" content=""/>
+    <meta property="og:image" content=""/>
+    <meta property="og:site_name" content="匣"/>
+    <meta property="og:description" content="匣（はこ）は、アカウント無しですぐに使える匿名プライベートチャットサービスです。"/>
+    <meta name="twitter:card" content="summary"/>
+    <title>{% block title %}匣{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}">
+    {% block extrahead %}{% endblock %}
+</head>
+<body>
+{% block content %}{% endblock %}
+<footer>
+    <p>&copy; {% now 'Y' %} 匣.</p>
+</footer>
+</body>
+</html>

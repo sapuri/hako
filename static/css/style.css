@@ -1,0 +1,121 @@
+body {
+    margin: 0;
+    padding: 0;
+    color: #333;
+    background-color: #dfdfdf;
+    font-family: "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+}
+
+h1, h2, h3 {
+    font-weight: normal;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.wrapper {
+    width: 90%;
+    margin: 20px auto 20px auto;
+    padding: 20px;
+    background-color: #f1f2e7;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .6), 0 2px 0 rgba(255, 255, 255, .15) inset;
+}
+
+.post_form {
+    text-align: center;
+}
+
+.post_form p {
+    font-size: 22px;
+}
+
+.post_form input[type="text"] {
+    display: inline-block;
+    height: 34px;
+    line-height: 1.42857;
+    padding: 6px 12px;
+    color: #555;
+    font-size: 14px;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .075) inset;
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.post_form input[type="file"] {
+    font-size: 14px;
+}
+
+.post_form button {
+    display: inline-block;
+    height: 34px;
+    line-height: 1.42857;
+    padding: 6px 12px;
+    color: #555;
+    font-size: 14px;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .075) inset;
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.post_form textarea {
+    padding: 6px 12px;
+    color: #555;
+    font-size: 14px;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .075) inset;
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.error_info {
+    color: red;
+}
+
+.post_list h2 {
+    font-size: 20px;
+}
+
+.post_list li {
+    font-size: 14px;
+}
+
+.post_list a {
+    color: blue;
+}
+
+.name {
+    color: #090;
+}
+
+footer {
+    text-align: center;
+}

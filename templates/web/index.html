@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+    <div style="text-align: center">
+        <h1><a href="/">匣</a></h1>
+        <p>匣（はこ）は、アカウント無しですぐに使える匿名プライベートチャットサービスです。</p>
+        <form class="create-room-form" action="./" method="post">{% csrf_token %}
+            <input type="text" name="room_name">
+            <button class="btn" type="submit" name="action" value="save">部屋を作る</button>
+        </form>
+    </div>
+
+{% endblock %}
