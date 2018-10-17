@@ -5,22 +5,7 @@
 
 {% block extrahead %}
     <meta name="robots" content="noindex, nofollow, noarchive">
-    <script defer>
-        document.addEventListener('DOMContentLoaded', () => {
-            const textarea = document.post_form.body;
-            textarea.addEventListener('keydown', e => {
-                if (e.keyCode === 13 && e.metaKey) {
-                    const input = document.createElement('input');
-                    input.setAttribute('type', 'hidden');
-                    input.setAttribute('name', 'action');
-                    input.setAttribute('value', 'save');
-                    const form = document.forms.post_form;
-                    form.appendChild(input);
-                    form.submit();
-                }
-            });
-        });
-    </script>
+    <script defer src="{% static 'js/room.js' %}"></script>
 {% endblock %}
 
 {% block content %}
@@ -29,7 +14,7 @@
             <div class="mdl-card mdl-shadow--2dp">
                 <h2 class="room-title" style="text-align: center">{{ room.name }}</h2>
                 <ul>
-                    <li id="post-0" class="post">
+                    <li id="0" class="post">
                         <div class="post-info">
                             <span class="index">{{ initial_post.index }}</span>
                             <span class="name">{{ initial_post.name }}</span>
@@ -38,7 +23,7 @@
                         <p class="body">{{ initial_post.body | linebreaksbr }}</p>
                     </li>
                     {% for post in posts %}
-                        <li id="post-{{ post.index }}" class="post">
+                        <li id="{{ post.index }}" class="post">
                             <div class="post-info">
                                 <span class="index">{{ post.index }}</span>
                                 <span class="name">{{ post.name }}</span>
