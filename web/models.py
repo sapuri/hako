@@ -20,7 +20,7 @@ class Room(models.Model):
 
     @staticmethod
     def generate_user_id(room_id: str, ip_addr: str) -> str:
-        return hashlib.sha1(f'{room_id}{ip_addr}'.encode()).hexdigest()
+        return hashlib.sha1(f'{room_id}{ip_addr}'.encode()).hexdigest()[:10]
 
     @staticmethod
     def get_client_ip(request: object) -> str:
