@@ -43,7 +43,7 @@ class RoomView(View):
         initial_post = {
             'index': 0,
             'name': '匣',
-            'body': f'ID:{room.user_id} によって部屋が作成されました。',
+            'body': f'ID:{room.user_id} が部屋を作成しました。\nこの部屋のURLを知っている人のみが参加できます。',
             'created_at': room.created_at
         }
 
