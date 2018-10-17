@@ -6,20 +6,26 @@
 {% block content %}
     <div id="index">
         <img class="logo" src="{% static 'images/logo.png' %}" alt="logo">
-        <p>
-            匣（はこ）は、アカウント無しですぐに使える匿名プライベートチャットサービスです。<br>
-            部屋名を入力するだけですぐにプライベートチャットを開始できます。<br>
-            部屋は URL を共有した相手のみが参加できます。
-        </p>
-        <form class="create-room-form" action="./" method="post">{% csrf_token %}
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                {{ room_form.name }}
-                <label class="mdl-textfield__label"
-                       for="{{ room_form.name.id_for_label }}">{{ room_form.name.label }}</label>
+        <div id="room-form">
+            <div class="mdl-card mdl-shadow--2dp">
+                <p>
+                    匣（はこ）は、アカウント無しですぐに使える匿名プライベートチャットサービスです。<br>
+                    部屋名を入力するだけですぐにプライベートチャットを開始できます。<br>
+                    部屋は URL を共有した相手のみが参加できます。
+                </p>
+                <form class="room-form" action="./" method="post">{% csrf_token %}
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        {{ room_form.name }}
+                        <label class="mdl-textfield__label"
+                               for="{{ room_form.name.id_for_label }}">{{ room_form.name.label }}</label>
+                    </div>
+                    <br>
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit">
+                        部屋を作る
+                    </button>
+                </form>
             </div>
-            <br>
-            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit">部屋を作る</button>
-        </form>
+        </div>
     </div>
 
     <footer>
