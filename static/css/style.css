@@ -1,6 +1,10 @@
 body {
-    background-color: #dfdfdf;
+    background-color: #fafafa;
     font-family: "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+}
+
+ul {
+    padding: 0;
 }
 
 li {
@@ -11,14 +15,18 @@ a {
     text-decoration: none;
 }
 
+header {
+    margin-top: 20px;
+}
+
 footer {
     text-align: center;
-    margin-top: 50px;
+    margin-top: 40px;
 }
 
 footer .logo {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 #index {
@@ -35,33 +43,33 @@ footer .logo {
     font-size: 24px;
 }
 
-.wrapper {
-    width: 90%;
-    margin: 20px auto 20px auto;
+#post-list {
     padding: 20px;
-    background-color: #f1f2e7;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, .6), 0 2px 0 rgba(255, 255, 255, .15) inset;
 }
 
-.post_list h2 {
-    font-size: 20px;
-}
-
-.post_list li {
-    font-size: 14px;
-}
-
-.post_list a {
+#post-list a {
     color: blue;
 }
 
-.post_form {
+#post-list .name {
+    color: #090;
+}
+
+#post-form {
+    padding: 0 20px;
+}
+
+#post-form h2 {
+    font-size: 20px;
+    margin-top: 0;
+}
+
+#post-form .mdl-card {
     text-align: center;
 }
 
-.post_form h2 {
-    font-size: 20px;
+li.post {
+    margin-bottom: 20px;
 }
 
 .form-error {
@@ -72,6 +80,7 @@ footer .logo {
     color: grey;
 }
 
-.name {
-    color: #090;
+.mdl-card {
+    width: 100%;
+    padding: 20px 10px;
 }

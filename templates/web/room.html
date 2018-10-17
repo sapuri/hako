@@ -24,55 +24,56 @@
 {% endblock %}
 
 {% block content %}
-    <header>
-        <h2 class="room-title" style="text-align: center">{{ room.name }}</h2>
-    </header>
-
-    <div class="wrapper">
-        <div class="post_list">
-            <ul>
-                <li class="post">
-                    <p>
-                        <span class="index">{{ initial_post.index }}</span>
-                        <span class="name">{{ initial_post.name }}</span>
-                        <span class="date">{{ initial_post.created_at | date:"Y/m/d(D) h:m:s" }}</span>
-                    </p>
-                    <p>{{ initial_post.body | linebreaksbr }}</p>
-                </li>
-                {% for post in posts %}
+    <div id="content">
+        <div id="post-list">
+            <div class="mdl-card mdl-shadow--2dp">
+                <h2 class="room-title" style="text-align: center">{{ room.name }}</h2>
+                <ul>
                     <li class="post">
-                        <p>
-                            <span class="index">{{ post.index }}</span>
-                            <span class="name">{{ post.name }}</span>
-                            <span class="date">{{ post.created_at | date:"Y/m/d(D) h:m:s" }}</span> ID:<span
-                                class="user_id">{{ post.user_id }}</span>
-                        </p>
-                        <p>{{ post.body | urlize | linebreaksbr }}</p>
+                        <div class="post-info">
+                            <span class="index">{{ initial_post.index }}</span>
+                            <span class="name">{{ initial_post.name }}</span>
+                            <span class="date">{{ initial_post.created_at | date:"Y/m/d(D) h:m:s" }}</span>
+                        </div>
+                        <p class="body">{{ initial_post.body | linebreaksbr }}</p>
                     </li>
-                {% endfor %}
-            </ul>
+                    {% for post in posts %}
+                        <li class="post">
+                            <div class="post-info">
+                                <span class="index">{{ post.index }}</span>
+                                <span class="name">{{ post.name }}</span>
+                                <span class="date">{{ post.created_at | date:"Y/m/d(D) h:m:s" }}</span>
+                                <span class="user-id">ID:{{ post.user_id }}</span>
+                            </div>
+                            <p class="body">{{ post.body | urlize | linebreaksbr }}</p>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
 
-        <div class="post_form">
-            <h2><i class="material-icons">comment</i> コメントを投稿</h2>
-            <form name="post_form" action="" method="post">{% csrf_token %}
-                {% for field in post_form %}
-                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        {{ field }}
-                        <label class="mdl-textfield__label" for="{{ field.id_for_label }}">{{ field.label }}</label>
-                    </div>
-                    <br>
-                    {% for error in field.errors %}
-                        <p class="form-error">{{ error }}</p>
+        <div id="post-form">
+            <div class="mdl-card mdl-shadow--2dp">
+                <h2><i class="material-icons">comment</i> コメントを投稿</h2>
+                <form name="post_form" action="" method="post">{% csrf_token %}
+                    {% for field in post_form %}
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            {{ field }}
+                            <label class="mdl-textfield__label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        </div>
+                        <br>
+                        {% for error in field.errors %}
+                            <p class="form-error">{{ error }}</p>
+                        {% endfor %}
+                        {% if field.help_text %}
+                            <small class="help-text">{{ field.help_text }}</small>
+                        {% endif %}
                     {% endfor %}
-                    {% if field.help_text %}
-                        <small class="help-text">{{ field.help_text }}</small>
-                    {% endif %}
-                {% endfor %}
-                <br><br>
-                <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit">書き込む
-                </button>
-            </form>
+                    <br><br>
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit">書き込む
+                    </button>
+                </form>
+            </div>
         </div>
     </div>
 
