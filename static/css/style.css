@@ -1,6 +1,4 @@
 body {
-    margin: 0;
-    padding: 0;
     color: #333;
     background-color: #dfdfdf;
     font-family: "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
@@ -16,6 +14,26 @@ li {
 
 a {
     text-decoration: none;
+}
+
+header {
+}
+
+footer {
+    text-align: center;
+    margin-top: 50px;
+}
+
+
+#index {
+    text-align: center;
+    padding-top: 70px;
+}
+
+.logo {
+    text-align: center;
+    padding: 0;
+    margin: 0;
 }
 
 .wrapper {
@@ -114,8 +132,4 @@ a {
 
 .name {
     color: #090;
-}
-
-footer {
-    text-align: center;
 }

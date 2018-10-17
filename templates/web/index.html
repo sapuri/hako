@@ -1,15 +1,23 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}{{ title }}{% endblock %}
 
 {% block content %}
-    <div style="text-align: center">
-        <h1>匣</h1>
-        <p>匣（はこ）は、アカウント無しですぐに使える匿名プライベートチャットサービスです。</p>
+    <div id="index">
+        <img src="{% static 'images/logo.png' %}" alt="logo">
+        <p>
+            匣（はこ）は、アカウント無しですぐに使える匿名プライベートチャットサービスです。<br>
+            部屋名を入力するだけですぐにプライベートチャットを開始できます。<br>
+            部屋は URL を共有した相手のみが参加できます。
+        </p>
         <form class="create-room-form" action="./" method="post">{% csrf_token %}
-            <input type="text" name="room_name">
+            <input type="text" name="room_name" placeholder="部屋名">
             <button class="btn" type="submit" name="action" value="save">部屋を作る</button>
         </form>
     </div>
 
+    <footer>
+        <p>&copy; {% now 'Y' %} 匣.</p>
+    </footer>
 {% endblock %}

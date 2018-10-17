@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}{{ title }} - 匣{% endblock %}
 
@@ -25,8 +26,9 @@
 {% endblock %}
 
 {% block content %}
-    <h1 style="text-align: center"><a href="/">匣</a></h1>
-    <h2 style="text-align: center">{{ room.name }}</h2>
+    <header>
+        <h2 style="text-align: center">{{ room.name }}</h2>
+    </header>
 
     <div class="wrapper">
         <div class="post_list">
@@ -38,7 +40,7 @@
                         <span class="name">{{ initial_post.name }}</span>
                         <span class="date">{{ initial_post.created_at | date:"Y/m/d(D) h:m:s" }}</span>
                     </p>
-                    <p>{{ initial_post.body }}</p>
+                    <p>{{ initial_post.body | linebreaksbr }}</p>
                 </li>
                 {% for post in posts %}
                     <li class="post">
@@ -48,7 +50,7 @@
                             <span class="date">{{ post.created_at | date:"Y/m/d(D) h:m:s" }}</span> ID:<span
                                 class="user_id">{{ post.user_id }}</span>
                         </p>
-                        <p>{{ post.body }}</p>
+                        <p>{{ post.body | urlize | linebreaksbr }}</p>
                     </li>
                 {% endfor %}
             </ul>
@@ -67,4 +69,12 @@
             </form>
         </div>
     </div>
+
+    <footer>
+        <div class="logo">
+            <a href="{% url 'web:index' %}"><img src="{% static 'images/logo.png' %}" alt="logo" width="100"
+                                                 height="100"></a>
+        </div>
+        <p>&copy; {% now 'Y' %} 匣.</p>
+    </footer>
 {% endblock %}
