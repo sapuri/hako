@@ -29,7 +29,7 @@
             <div class="mdl-card mdl-shadow--2dp">
                 <h2 class="room-title" style="text-align: center">{{ room.name }}</h2>
                 <ul>
-                    <li class="post">
+                    <li id="post-0" class="post">
                         <div class="post-info">
                             <span class="index">{{ initial_post.index }}</span>
                             <span class="name">{{ initial_post.name }}</span>
@@ -38,7 +38,7 @@
                         <p class="body">{{ initial_post.body | linebreaksbr }}</p>
                     </li>
                     {% for post in posts %}
-                        <li class="post">
+                        <li id="post-{{ post.index }}" class="post">
                             <div class="post-info">
                                 <span class="index">{{ post.index }}</span>
                                 <span class="name">{{ post.name }}</span>
