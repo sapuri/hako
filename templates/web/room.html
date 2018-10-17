@@ -5,9 +5,7 @@
 
 {% block extrahead %}
     <meta name="robots" content="noindex, nofollow, noarchive">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
-          integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
-    <script>
+    <script defer>
         document.addEventListener('DOMContentLoaded', () => {
             const textarea = document.post_form.body;
             textarea.addEventListener('keydown', e => {
@@ -27,12 +25,11 @@
 
 {% block content %}
     <header>
-        <h2 style="text-align: center">{{ room.name }}</h2>
+        <h2 class="room-title" style="text-align: center">{{ room.name }}</h2>
     </header>
 
     <div class="wrapper">
         <div class="post_list">
-            <h2>投稿一覧 ({{ posts_num }} 件)</h2>
             <ul>
                 <li class="post">
                     <p>
@@ -57,23 +54,33 @@
         </div>
 
         <div class="post_form">
-            <h3><span class="fa fa-comment"></span> コメントを投稿</h3>
-            <form name="post_form" action="" method="post" enctype="multipart/form-data">{% csrf_token %}
-                <p><span class="fa fa-user"></span> <input type="text" name="name" placeholder="名無しさん" value=""
-                                                           maxlength="191" style="width:280px;"></p>
-                <p><span class="fa fa-upload"></span> <input type="file" name="image"></p>
-                <p><textarea name="body" cols="70" rows="10" wrap="hard" placeholder="コメント内容" required></textarea></p>
-                <span>Ctrl (MacOS の場合は Command) + Enter でも投稿できます。</span>
+            <h2><i class="material-icons">comment</i> コメントを投稿</h2>
+            <form name="post_form" action="" method="post">{% csrf_token %}
+                {% for field in post_form %}
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        {{ field }}
+                        <label class="mdl-textfield__label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    </div>
+                    <br>
+                    {% for error in field.errors %}
+                        <p class="form-error">{{ error }}</p>
+                    {% endfor %}
+                    {% if field.help_text %}
+                        <small class="help-text">{{ field.help_text }}</small>
+                    {% endif %}
+                {% endfor %}
                 <br><br>
-                <button class="btn" type="submit" name="action" value="save">書き込む</button>
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit">書き込む
+                </button>
             </form>
         </div>
     </div>
 
     <footer>
         <div class="logo">
-            <a href="{% url 'web:index' %}"><img src="{% static 'images/logo.png' %}" alt="logo" width="100"
-                                                 height="100"></a>
+            <a href="{% url 'web:index' %}">
+                <img src="{% static 'images/logo.png' %}" alt="logo" width="100" height="100">
+            </a>
         </div>
         <p>&copy; {% now 'Y' %} 匣.</p>
     </footer>
