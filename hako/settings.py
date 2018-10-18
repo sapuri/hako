@@ -137,12 +137,9 @@ except ImportError:
 
 STATIC_URL = '/static/'
 
-if DEBUG:
-    STATICFILES_DIRS = [
-        os.path.join(BASE_DIR, 'static'),
-    ]
-else:
-    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
 
 
 # Travis CI
@@ -163,4 +160,3 @@ if 'TRAVIS' in os.environ:
 if not DEBUG:
     import django_heroku
     django_heroku.settings(locals())
-    SECRET_KEY = os.environ['SECRET_KEY']
