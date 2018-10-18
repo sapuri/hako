@@ -144,6 +144,10 @@ STATICFILES_DIRS = [
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
+# Host name
+HOSTNAME = 'http://127.0.0.1:8000'
+
+
 # Travis CI
 if 'TRAVIS' in os.environ:
     SECRET_KEY = 'mj8f0l0)noi_7#l(+t9f8az72$)v+icvf6^87v6847!osel6+d'
@@ -171,5 +175,7 @@ if not DEBUG:
             },
         }
     }
+
+    HOSTNAME = 'https://hako-chat.herokuapp.com'
 
     django_heroku.settings(locals())
