@@ -53,7 +53,7 @@ class RoomView(View):
         }
 
         context = {
-            'title': room.name,
+            'title': f'{room.name} - 匣',
             'room': room,
             'posts': posts,
             'posts_num': posts_num,
