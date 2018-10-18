@@ -145,7 +145,7 @@ else:
     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 
-# Settings for Travis CI
+# Travis CI
 if 'TRAVIS' in os.environ:
     SECRET_KEY = 'mj8f0l0)noi_7#l(+t9f8az72$)v+icvf6^87v6847!osel6+d'
     DATABASES = {
@@ -159,8 +159,7 @@ if 'TRAVIS' in os.environ:
     }
 
 
-# SSL settings
+# Heroku
 if not DEBUG:
-    SESSION_COOKIE_SECURE = True
-    CSRF_COOKIE_SECURE = True
-    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    import django_heroku
+    django_heroku.settings(locals())
