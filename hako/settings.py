@@ -163,3 +163,4 @@ if 'TRAVIS' in os.environ:
 if not DEBUG:
     import django_heroku
     django_heroku.settings(locals())
+    SECRET_KEY = os.environ['SECRET_KEY']
