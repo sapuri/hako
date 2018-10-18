@@ -18,7 +18,7 @@
                         <div class="post-info">
                             <span class="index">{{ initial_post.index }}</span>
                             <span class="name">{{ initial_post.name }}</span>
-                            <span class="date">{{ initial_post.created_at | date:"Y/m/d(D) h:m:s" }}</span>
+                            <span class="date">{{ initial_post.created_at | date:"Y/m/d(D) H:i:s" }}</span>
                         </div>
                         <p class="body">{{ initial_post.body | linebreaksbr }}</p>
                     </li>
@@ -27,7 +27,7 @@
                             <div class="post-info">
                                 <span class="index">{{ post.index }}</span>
                                 <span class="name">{{ post.name }}</span>
-                                <span class="date">{{ post.created_at | date:"Y/m/d(D) h:m:s" }}</span>
+                                <span class="date">{{ post.created_at | date:"Y/m/d(D) H:i:s" }}</span>
                                 <span class="user-id">ID:{{ post.user_id }}</span>
                             </div>
                             <p class="body">{{ post.body | urlize | linebreaksbr }}</p>
