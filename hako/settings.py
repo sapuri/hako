@@ -79,6 +79,16 @@ WSGI_APPLICATION = 'hako.wsgi.application'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 # Load DATABASES from local_settings.py
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'hako',
+        'OPTIONS': {
+            'charset': 'utf8mb4',
+        },
+    }
+}
+
 
 
 # Password validation
