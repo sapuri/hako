@@ -41,7 +41,7 @@ class RoomView(View):
 
     def get(self, request, room_id):
         room = get_object_or_404(Room, room_id=room_id)
-        posts = Post.objects.filter(room=room)
+        posts = Post.objects.filter(room=room).order_by('index')
         posts_num = posts.count()
         post_form = PostForm()
 
