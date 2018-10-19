@@ -21,7 +21,7 @@
                             <span class="name">{{ initial_post.name }}</span>
                             <span class="date">{{ initial_post.created_at | date:"Y/m/d(D) H:i:s" }}</span>
                         </div>
-                        <p class="body">{{ initial_post.body | linebreaksbr }}</p>
+                        <p class="body">{{ initial_post.body | urlize | linebreaksbr }}</p>
                     </li>
                     {% for post in posts %}
                         <li id="{{ post.index }}" class="post">
