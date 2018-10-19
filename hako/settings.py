@@ -149,34 +149,34 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 HOSTNAME = 'http://127.0.0.1:8000'
 
 
-# Travis CI
-if 'TRAVIS' in os.environ:
-    SECRET_KEY = 'mj8f0l0)noi_7#l(+t9f8az72$)v+icvf6^87v6847!osel6+d'
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'travis_ci',
-            'USER': 'root',
-            'PASSWORD': '',
-            'HOST': '',
-        }
-    }
-
-
-# Heroku
 if not DEBUG:
-    import django_heroku
-
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'hako',
-            'OPTIONS': {
-                'charset': 'utf8mb4',
-            },
+    # Travis CI
+    if 'TRAVIS' in os.environ:
+        SECRET_KEY = 'mj8f0l0)noi_7#l(+t9f8az72$)v+icvf6^87v6847!osel6+d'
+        DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.mysql',
+                'NAME': 'travis_ci',
+                'USER': 'root',
+                'PASSWORD': '',
+                'HOST': '',
+            }
         }
-    }
 
-    HOSTNAME = 'https://hako-chat.herokuapp.com'
+    # Heroku
+    else:
+        import django_heroku
 
-    django_heroku.settings(locals())
+        DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.mysql',
+                'NAME': 'hako',
+                'OPTIONS': {
+                    'charset': 'utf8mb4',
+                },
+            }
+        }
+
+        HOSTNAME = 'https://hako-chat.herokuapp.com'
+
+        django_heroku.settings(locals())
