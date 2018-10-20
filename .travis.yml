@@ -2,6 +2,10 @@ language: python
 cache: pip
 python:
   - 3.6
+addons:
+  apt:
+    packages:
+      - fonts-ipafont
 service: mysql
 install:
   - pip install -r requirements.txt
