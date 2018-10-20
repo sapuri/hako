@@ -4,7 +4,7 @@ from django.test import TestCase
 from web.models import *
 
 
-class TestIndex(TestCase):
+class IndexTests(TestCase):
     def test_get(self):
         resp = self.client.get(resolve_url('web:index'))
         self.assertEqual(resp.status_code, 200)
@@ -15,7 +15,7 @@ class TestIndex(TestCase):
         self.assertEqual(resp.status_code, 302)
 
 
-class TestRoom(TestCase):
+class RoomTests(TestCase):
     def setUp(self):
         self.room_id = Room.generate_room_id()
         ip_addr = '127.0.0.1'

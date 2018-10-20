@@ -3,7 +3,7 @@ from django.test import TestCase
 from web.models import *
 
 
-class TestRoom(TestCase):
+class RoomTests(TestCase):
     @staticmethod
     def create_room(room_id: str = 'test', name: str = 'test', user_id: str = 'test',
                     ip_addr: str = '127.0.0.1') -> object:
@@ -19,9 +19,9 @@ class TestRoom(TestCase):
         self.assertEqual(len(user_id), 10)
 
 
-class TestPost(TestCase):
+class PostTests(TestCase):
     def setUp(self):
-        self.room = TestRoom.create_room()
+        self.room = RoomTests.create_room()
 
     @staticmethod
     def create_post(room: object, index: int = 1, name: str = '', body: str = 'test', user_id: str = 'test',

@@ -3,7 +3,7 @@ from django.test import TestCase
 from web.forms import *
 
 
-class TestRoomForm(TestCase):
+class RoomFormTests(TestCase):
     def test_valid_room_form(self):
         data = {'name': 'test'}
         room_form = RoomForm(data=data)
@@ -15,7 +15,7 @@ class TestRoomForm(TestCase):
         self.assertFalse(room_form.is_valid())
 
 
-class TestPostForm(TestCase):
+class PostFormTests(TestCase):
     def test_valid_post_form(self):
         data = {
             'name': '',
