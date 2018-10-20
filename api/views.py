@@ -52,8 +52,7 @@ class RoomViewSet(viewsets.ModelViewSet):
                 user_id=Room.generate_user_id(room.room_id, ip_addr),
                 ip_addr=ip_addr,
             )
-            new_post.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+            return Response(PostSerializer(new_post).data, status=status.HTTP_201_CREATED)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -61,10 +60,4 @@ class RoomViewSet(viewsets.ModelViewSet):
 class PostViewSet(viewsets.ModelViewSet):
     serializer_class = PostSerializer
     queryset = Post.objects.all()
-
-    def get_permissions(self):
-        if self.action == 'list':
-            permission_classes = [permissions.IsAuthenticated]
-        else:
-            permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-        return [permission() for permission in permission_classes]
+    permission_classes = [permissions.IsAuthenticated]
