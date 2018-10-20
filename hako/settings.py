@@ -160,6 +160,9 @@ if not DEBUG:
                 'USER': 'root',
                 'PASSWORD': '',
                 'HOST': '',
+                'OPTIONS': {
+                    'charset': 'utf8mb4',
+                },
             }
         }
 
