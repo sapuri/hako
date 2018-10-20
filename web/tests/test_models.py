@@ -12,11 +12,11 @@ class RoomTests(TestCase):
     def test_room_creation(self):
         room = self.create_room()
         self.assertTrue(isinstance(room, Room))
-        self.assertEqual(room.__str__(), room.name)
+        self.assertEqual(room.name, room.__str__())
 
     def test_generate_user_id(self):
         user_id = Room.generate_user_id('test', '127.0.0.1')
-        self.assertEqual(len(user_id), 10)
+        self.assertEqual(10, len(user_id))
 
 
 class PostTests(TestCase):
@@ -31,4 +31,4 @@ class PostTests(TestCase):
     def test_post_creation(self):
         post = self.create_post(room=self.room)
         self.assertTrue(isinstance(post, Post))
-        self.assertEqual(post.__str__(), post.name)
+        self.assertEqual(post.name, post.__str__())

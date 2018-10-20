@@ -7,12 +7,12 @@ from web.models import *
 class IndexTests(TestCase):
     def test_get(self):
         resp = self.client.get(resolve_url('web:index'))
-        self.assertEqual(resp.status_code, 200)
+        self.assertEqual(200, resp.status_code)
 
     def test_post(self):
         data = {'name': 'test'}
         resp = self.client.post(resolve_url('web:index'), data)
-        self.assertEqual(resp.status_code, 302)
+        self.assertEqual(302, resp.status_code)
 
 
 class RoomTests(TestCase):
@@ -29,7 +29,7 @@ class RoomTests(TestCase):
 
     def test_get(self):
         resp = self.client.get(resolve_url('web:room', room_id=self.room_id))
-        self.assertEqual(resp.status_code, 200)
+        self.assertEqual(200, resp.status_code)
 
     def test_post(self):
         data = {
@@ -37,4 +37,4 @@ class RoomTests(TestCase):
             'body': 'test'
         }
         resp = self.client.post(resolve_url('web:room', room_id=self.room_id), data=data)
-        self.assertEqual(resp.status_code, 302)
+        self.assertEqual(302, resp.status_code)
