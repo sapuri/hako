@@ -28,7 +28,7 @@ class RoomTests(APITestCase):
         return Room.objects.create(room_id=room_id, name=name, user_id=user_id, ip_addr=ip_addr)
 
     @staticmethod
-    def create_post(room: object, index: int = 1, name: str = '名無しさん', body: str = 'test', user_id: str = 'test',
+    def create_post(room: object, index: int = 1, name: str = 'test', body: str = 'test', user_id: str = 'test',
                     ip_addr: str = '127.0.0.1') -> object:
         return Post.objects.create(index=index, room=room, name=name, body=body, user_id=user_id, ip_addr=ip_addr)
 
@@ -55,7 +55,7 @@ class RoomTests(APITestCase):
                 'created_at': dateformat.format(self.room.created_at.astimezone(self.tz), 'Y/n/d H:i:s'),
                 'modified_at': dateformat.format(self.room.created_at.astimezone(self.tz), 'Y/n/d H:i:s')
             }),
-            'name': '名無しさん',
+            'name': 'test',
             'body': 'test',
             'user_id': self.post.user_id,
             'created_at': dateformat.format(self.post.created_at.astimezone(self.tz), 'Y/n/d H:i:s'),
@@ -66,7 +66,7 @@ class RoomTests(APITestCase):
 
     def test_create_post(self):
         data = {
-            'name': '',
+            'name': 'test',
             'body': 'test'
         }
         resp = self.client.post(f'/api/rooms/{self.room.room_id}/create_post/', data=data)
@@ -79,5 +79,5 @@ class RoomTests(APITestCase):
             'created_at': dateformat.format(self.room.created_at.astimezone(self.tz), 'Y/n/d H:i:s'),
             'modified_at': dateformat.format(self.room.created_at.astimezone(self.tz), 'Y/n/d H:i:s')
         }), resp.data['room'])
-        self.assertEqual('名無しさん', resp.data['name'])
+        self.assertEqual('test', resp.data['name'])
         self.assertEqual('test', resp.data['body'])
