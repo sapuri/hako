@@ -14,6 +14,11 @@ class IndexTests(TestCase):
         resp = self.client.post(resolve_url('web:index'), data)
         self.assertEqual(302, resp.status_code)
 
+    def test_post_ng(self):
+        data = {'name': ''}
+        resp = self.client.post(resolve_url('web:index'), data)
+        self.assertEqual(200, resp.status_code)
+
 
 class RoomTests(TestCase):
     def setUp(self):

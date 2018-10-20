@@ -81,3 +81,11 @@ class RoomTests(APITestCase):
         }), resp.data['room'])
         self.assertEqual('test', resp.data['name'])
         self.assertEqual('test', resp.data['body'])
+
+    def test_create_post_ng(self):
+        data = {
+            'name': 'test',
+            'body': ''
+        }
+        resp = self.client.post(f'/api/rooms/{self.room.room_id}/create_post/', data=data)
+        self.assertEqual(400, resp.status_code)
