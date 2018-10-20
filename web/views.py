@@ -25,8 +25,7 @@ class IndexView(View):
             room_id = Room.generate_room_id()
             ip_addr = Room.get_client_ip(request)
             user_id = Room.generate_user_id(room_id, ip_addr)
-            room = Room.objects.create(room_id=room_id, name=room_name, user_id=user_id, ip_addr=ip_addr)
-            room.save()
+            Room.objects.create(room_id=room_id, name=room_name, user_id=user_id, ip_addr=ip_addr)
             return redirect('web:room', room_id=room_id)
 
         context = {
@@ -75,7 +74,7 @@ class RoomView(View):
             body = post_form.cleaned_data.get('body')
             ip_addr = Room.get_client_ip(request)
 
-            new_post = Post.objects.create(
+            Post.objects.create(
                 index=posts_num + 1,
                 room=room,
                 name=name,
@@ -83,6 +82,5 @@ class RoomView(View):
                 user_id=Room.generate_user_id(room_id, ip_addr),
                 ip_addr=ip_addr,
             )
-            new_post.save()
 
         return redirect('web:room', room_id=room_id)
