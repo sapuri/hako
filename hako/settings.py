@@ -169,7 +169,6 @@ if not DEBUG:
     # Heroku
     else:
         import django_heroku
-
         DATABASES = {
             'default': {
                 'ENGINE': 'django.db.backends.mysql',
@@ -179,7 +178,6 @@ if not DEBUG:
                 },
             }
         }
-
         HOSTNAME = 'https://hako-chat.herokuapp.com'
-
         django_heroku.settings(locals())
+        del DATABASES['default']['OPTIONS']['sslmode']
