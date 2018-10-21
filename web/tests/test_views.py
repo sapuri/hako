@@ -12,7 +12,7 @@ class IndexTests(TestCase):
     def test_post(self):
         data = {'name': 'test'}
         resp = self.client.post(resolve_url('web:index'), data)
-        self.assertEqual(302, resp.status_code)
+        self.assertEqual(200, resp.status_code)
 
     def test_post_ng(self):
         data = {'name': ''}
@@ -39,6 +39,14 @@ class RoomTests(TestCase):
         data = {
             'name': 'test',
             'body': 'test'
+        }
+        resp = self.client.post(resolve_url('web:room', room_id=self.room_id), data=data)
+        self.assertEqual(302, resp.status_code)
+
+    def test_post_ng(self):
+        data = {
+            'name': 'test',
+            'body': ''
         }
         resp = self.client.post(resolve_url('web:room', room_id=self.room_id), data=data)
         self.assertEqual(302, resp.status_code)
