@@ -6,7 +6,8 @@
 {% block extrahead %}
     <meta name="robots" content="noindex, nofollow, noarchive">
     <meta property="og:title" content="{{ title }}"/>
-    <script defer src="{% static 'js/room.js' %}"></script>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <script src="{% static 'js/index.js' %}"></script>
 {% endblock %}
 
 {% block content %}
@@ -19,14 +20,22 @@
                     部屋名を入力するだけですぐにプライベートチャットを開始できます。<br>
                     部屋は URL を共有した相手のみが参加できます。
                 </p>
-                <form class="room-form" action="./" method="post">{% csrf_token %}
-                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        {{ room_form.name }}
-                        <label class="mdl-textfield__label"
-                               for="{{ room_form.name.id_for_label }}">{{ room_form.name.label }}</label>
-                    </div>
+                <form class="room-form" name="room_form" action="./" method="post">{% csrf_token %}
+                    {% for field in room_form %}
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                            {{ field }}
+                            <label class="mdl-textfield__label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        </div>
+                        {% for error in field.errors %}
+                            <p class="form-error">{{ error }}</p>
+                        {% endfor %}
+                    {% endfor %}
                     <br>
-                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type="submit">
+                    <button
+                            class="g-recaptcha mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+                            data-sitekey="{{ recaptcha_site_key }}"
+                            data-callback="onSubmit"
+                            type="submit">
                         部屋を作る
                     </button>
                 </form>

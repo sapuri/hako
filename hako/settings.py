@@ -126,6 +126,11 @@ REST_FRAMEWORK = {
 }
 
 
+# reCAPTCHA
+# Load RECAPTCHA_SITE_KEY from local_settings.py
+# Load RECAPTCHA_SECRET_KEY from local_settings.py
+
+
 # Load all local settings
 try:
     from .local_settings import *
@@ -150,6 +155,10 @@ HOSTNAME = 'http://127.0.0.1:8000'
 
 
 if not DEBUG:
+    # reCAPTCHA
+    RECAPTCHA_SITE_KEY = os.getenv('RECAPTCHA_SITE_KEY')
+    RECAPTCHA_SECRET_KEY = os.getenv('RECAPTCHA_SECRET_KEY')
+
     # Travis CI
     if 'TRAVIS' in os.environ:
         SECRET_KEY = 'mj8f0l0)noi_7#l(+t9f8az72$)v+icvf6^87v6847!osel6+d'
@@ -179,5 +188,5 @@ if not DEBUG:
             }
         }
         HOSTNAME = 'https://hako-chat.herokuapp.com'
+
         django_heroku.settings(locals())
-        del DATABASES['default']['OPTIONS']['sslmode']
