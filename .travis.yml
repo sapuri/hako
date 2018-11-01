@@ -1,14 +1,17 @@
 language: python
 cache: pip
 python:
-  - 3.6
+- 3.6
 service: mysql
 install:
-  - pip install -r requirements.txt
+- pip install -r requirements.txt
 before_script:
-  - mysql -u root -e "CREATE DATABASE travis_ci CHARACTER SET utf8mb4"
+- mysql -u root -e "CREATE DATABASE travis_ci CHARACTER SET utf8mb4"
 script:
-  - python manage.py migrate
-  - python manage.py makemigrations web
-  - python manage.py migrate
-  - python manage.py test
+- python manage.py migrate
+- python manage.py makemigrations web
+- python manage.py migrate
+- python manage.py test
+notifications:
+  slack:
+    secure: bg+EMg1RLW4yHQthsbV35xnSlSLEwVn7BPpdI6QGoDV37dXgOKXZiuhxYZDeLAbgPnY84Aj03V61OaBPXJyGcn71DI1UGmmWuBiofVODao/YAmgM7PnKonCj5pt8KBtkKCT/KTWwEdm3+9XFMswBMXzGV7ALlc4U8DVCk1NjO45EU6SlsG5pxE/xXYvxRKRqyTXjcdg3QmFAOjRJZzLRHICYjcR5PcC3/tQty3k40DIo3dL+rZciiNrRFB87lOqGPuA2DKhfyoKSr/IFsc1URiYPdtukMKAHjho4s+msaklA9QoLPEKI58ie+CYMvXgjHdSYKwfbVCZF+/5CUaYD1wIrwTLbFAjUE8kWgBVeq72RqgdXsU3+EbndDpS59MTga6Zb3aOvdBTaXWtC6YCHNRYPc5sC0B52MghG6ziwtLhDeTZ1aKhbsRP4djsrW4ZL8txMGTTv3Sx8UBGYvkGLk0BrPdUabmpe8fYduNI8/HVNMkjnNLgwZCg+/cE6Pe+nNl/MmuZLeJ9BO0i2DwdGk2vouTXArXryhq/SEfVbP/If+D6NNVjQklv4y6pm+VYJr+eLxBs+7z9gefmkcC9yVKzhYAJG2/fgSyCK8t1QQRfap1fHQrle/5YaLqEwnUOrGv6jQe7MouGanMN0xKmXIxEOXVkDYB/qpvCXGnerAlo=
