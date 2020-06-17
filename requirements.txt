@@ -23,7 +23,7 @@ psycopg2-binary==2.8.5
 pycparser==2.20
 PyMySQL==0.9.3
 pytz==2020.1
-requests==2.23.0
+requests==2.24.0
 simplejson==3.17.0
 six==1.15.0
 uritemplate==3.0.1
